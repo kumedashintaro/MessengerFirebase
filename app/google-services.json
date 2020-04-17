@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "760612317272",
+    "firebase_url": "https://maeengerfirebase.firebaseio.com",
+    "project_id": "maeengerfirebase",
+    "storage_bucket": "maeengerfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760612317272:android:791c1ee7d45c6bb48f422d",
+        "android_client_info": {
+          "package_name": "com.example.messengerfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760612317272-q8plngoenfp05tf7pcdnjrefi81ji5q9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0F0HDUuzG6te1OkCyv0_aTuABx13-vIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760612317272-q8plngoenfp05tf7pcdnjrefi81ji5q9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
