@@ -25,9 +25,6 @@ class NewMessageActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Select User"
 
-     //   val adapter = GroupAdapter<ViewHolder>()
-   //     recyclerview_newmessage.adapter = adapter
-
         recyclerview_newmessage.layoutManager = LinearLayoutManager(this)
 
         fetchUsers()
@@ -57,11 +54,11 @@ class NewMessageActivity : AppCompatActivity() {
                     val userItem = item as UserItem
 
                     val intent = Intent(view.context,ChatLogActivity::class.java)
-                    intent.putExtra(USER_KEY, userItem.user.username)
+//                    intent.putExtra(USER_KEY, userItem.user.username)
+                    intent.putExtra(USER_KEY, userItem.user)
                     startActivity(intent)
 
                     finish()
-
                 }
 
                 recyclerview_newmessage.adapter = adapter
