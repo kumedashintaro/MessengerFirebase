@@ -81,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (!it.isSuccessful) return@addOnCompleteListener
 
                 //else if successful
-                //Log.d("Main", "Successfully created user with uid: ${it.result.user.uid}")
+                Log.d("Main", "Successfully created user with uid: ${it.result?.user?.uid}")
 
                 uploadImageToFirebaseStorage()
             }
@@ -122,7 +122,7 @@ class RegisterActivity : AppCompatActivity() {
             .addOnSuccessListener{
                 Log.d("RegisterActivity","Finally we saved the user to Firebase Database")
 
-                val intent = Intent(this, LastMessagesActivity::class.java)
+                val intent = Intent(this, LatesMessagesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }

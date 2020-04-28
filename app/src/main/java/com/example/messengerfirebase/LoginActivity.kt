@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         if (!it.isSuccessful) {
 
-                            val intent = Intent(this, LastMessagesActivity::class.java)
+                            val intent = Intent(this, LatesMessagesActivity::class.java)
                             intent.flags =
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(intent)

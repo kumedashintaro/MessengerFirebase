@@ -50,17 +50,18 @@ class ChatLogActivity : AppCompatActivity() {
     private fun listenForMessages(){
         val fromId = FirebaseAuth.getInstance().uid
         val toId = toUser?.uid
-        val ref = FirebaseDatabase.getInstance().getReference("/messages/$fromId/$toId")
+        val ref = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId")
 
         ref.addChildEventListener(object: ChildEventListener {
+
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                 val chatMessage = p0.getValue(ChatMessage::class.java)
 
                 if(chatMessage != null){
                     Log.d(TAG, chatMessage?.text)
 
-                    if(chatMessage.fromId == FirebaseAuth.getInstance().uid){
-                        val currentUser = LastMessagesActivity.currentUser ?: return
+                    if(chatMessage.fromId == FirebaseAuth.getInstance().uid){//現在のユーザ
+                        val currentUser = LatesMessagesActivity.currentUser ?: return
                         adapter.add(ChatFromItem(chatMessage?.text, currentUser))
                     }else{
                        // val toUser = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
@@ -103,6 +104,8 @@ class ChatLogActivity : AppCompatActivity() {
         reference.setValue(chatMessage)
             .addOnSuccessListener{
                 Log.d(TAG, "Saved our chat message: ${reference.key}")
+
+
             }
 
         toReference.setValue(chatMessage)
@@ -137,5 +140,4 @@ class ChatToItem(val text: String, val user: User) : Item<ViewHolder>() {
         return R.layout.chat_to_row
     }
 }
-
 

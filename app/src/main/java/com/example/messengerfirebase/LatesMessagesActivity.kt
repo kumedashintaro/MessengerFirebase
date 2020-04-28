@@ -12,7 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class LastMessagesActivity : AppCompatActivity() {
+class LatesMessagesActivity : AppCompatActivity() {
 
     companion object{
         var currentUser: User? = null
@@ -29,7 +29,7 @@ class LastMessagesActivity : AppCompatActivity() {
 
     private fun fetchCurrentUser(){
         val uid = FirebaseAuth.getInstance().uid
-        val ref = FirebaseDatabase.getInstance().getReference("/user/$uid")
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(p0: DataSnapshot) {
