@@ -1,5 +1,6 @@
 package com.example.messengerfirebase
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,9 +8,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.messengerfirebase.LatesMessagesActivity.Companion.currentUser
+import com.example.messengerfirebase.NewMessageActivity.Companion.USER_KEY
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -20,6 +24,7 @@ class LatesMessagesActivity : AppCompatActivity() {
 
     companion object{
         var currentUser: User? = null
+        val TAG ="LatestMessages"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +32,19 @@ class LatesMessagesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_latest_messages)
 
         recyclervew_latest_messages.adapter = adapter
+        recyclervew_latest_messages.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
+
+        //set item click listener
+        adapter.setOnItemClickListener{ item, view ->
+            Log.d(TAG,"123")
+            val intent = Intent(this, ChatLogActivity::class.java)
+
+            //we are missing the chat partner user
+
+            val row = item as LatestMessageRow
+            intent.putExtra(NewMessageActivity.USER_KEY, row.chatPartnerUser)
+                startActivity(intent)
+        }
 
 //        setupDummyRows()
         listenForLatesMessages()
@@ -36,16 +54,7 @@ class LatesMessagesActivity : AppCompatActivity() {
         verifyUserIsLoggedIn()
     }
 
-    class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>(){
-        override fun bind(viewHolder: ViewHolder, position: Int) {
-            viewHolder.itemView.message_textview_message.text = chatMessage.text
 
-        }
-
-        override fun getLayout(): Int{
-            return R.layout.latest_message_row
-        }
-    }
 
     val latestMessageMap = HashMap<String, ChatMessage>()
 
